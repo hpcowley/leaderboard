@@ -1,4 +1,4 @@
 # Leaderboard App
 
 
-_An invention by Hannah and Devin_
+_An invention by Hannah, Devin and Raph_
