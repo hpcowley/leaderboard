@@ -8,6 +8,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
+
 /**
  * A simple table demonstrating the hierarchy of the `Table` component and its sub-components.
  */

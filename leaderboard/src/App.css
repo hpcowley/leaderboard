@@ -1,4 +1,4 @@
-@import url(Fonts.css);
+@import "Fonts.css";
 
 .App {
   text-align: center;
@@ -8,7 +8,7 @@
 .Board {
   height: auto;
   padding: auto;
-  font-family: 'Roboto Slab'
+  font-family: 'Roboto Slab';
 }
 
 .Intro {

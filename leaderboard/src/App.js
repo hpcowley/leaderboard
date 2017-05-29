@@ -9,19 +9,17 @@ import Options from './flatOptions.js';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <MuiThemeProvider>
+      <MuiThemeProvider>
+        <div className="App"> 
           <AppBarFunc />
-        </MuiThemeProvider>
-        <div className="Intro">
-          <p> This is where you put in some info! </p>
-          <p> This is where you select some options! </p>
-          <MuiThemeProvider>
+          <div className="Intro">
+            <p> This is where you put in some info! </p>
+            <p> This is where you select some options! </p>
             <Options />
-          </MuiThemeProvider>
+          </div>
+          <Board/>
         </div>
-        <Board/>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
@@ -34,9 +32,7 @@ count, view as percent of quota, view as all time count
 class Board extends Component {
   render() {
     return (
-      <MuiThemeProvider>
         <TableExampleSimple />
-      </MuiThemeProvider>
     );
   }
 }
