@@ -1,0 +1,28 @@
+@import url(Fonts.css);
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.Board {
+  height: auto;
+  padding: auto;
+  font-family: 'Roboto Slab'
+}
+
+.Header .Board {
+  font-family: inherit;
+  color: grey;
+
+}
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
