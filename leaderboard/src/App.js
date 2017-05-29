@@ -4,6 +4,7 @@ import './App.css';
 import './Fonts.css';
 import AppBarFunc from './appBar.js';
 import TableExampleSimple from './table.js';
+import Options from './flatOptions.js';
 
 class App extends Component {
   render() {
@@ -12,6 +13,13 @@ class App extends Component {
         <MuiThemeProvider>
           <AppBarFunc />
         </MuiThemeProvider>
+        <div className="Intro">
+          <p> This is where you put in some info! </p>
+          <p> This is where you select some options! </p>
+          <MuiThemeProvider>
+            <Options />
+          </MuiThemeProvider>
+        </div>
         <Board/>
       </div>
     );
