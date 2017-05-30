@@ -14,14 +14,16 @@ import {
  */
 const TableExampleSimple = () => (
   <Table>
-    <TableHeader>
+    <TableHeader 
+      adjustForCheckbox={false}
+      displaySelectAll={false}>
       <TableRow>
         <TableHeaderColumn>Name</TableHeaderColumn>
         <TableHeaderColumn>Synapses</TableHeaderColumn>
         <TableHeaderColumn>Traces</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody>
+    <TableBody displayRowCheckbox={false}>
       <TableRow>
         <TableRowColumn>Hannah Paris</TableRowColumn>
         <TableRowColumn>0</TableRowColumn>

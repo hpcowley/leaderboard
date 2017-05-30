@@ -2,7 +2,8 @@
 
 .App {
   text-align: center;
-  font-family: 'Roboto Slab'
+  font-family: 'Roboto Slab';
+  display: 'block';
 }
 
 .Board {
@@ -13,8 +14,8 @@
 
 .Intro {
   font-family: inherit, sans-serif;
-  
 }
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
