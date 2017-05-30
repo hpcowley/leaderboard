@@ -10,7 +10,12 @@ import PlusOneIcon from 'material-ui/svg-icons/image/exposure-plus-1';
 
 
 export const TaskControlBar = (props) => (
-  <Toolbar style={{height:70, display:'block'}}>
+  <Toolbar style={{
+      margin:10,
+      height:70,
+      display:'block',
+      paddingTop: 6,
+    }}>
     <ToolbarGroup>
       <ToolbarTitle text={props.username} />
       <ToolbarSeparator />
