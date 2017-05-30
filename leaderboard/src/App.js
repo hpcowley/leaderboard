@@ -5,6 +5,7 @@ import './Fonts.css';
 import AppBar from './appBar';
 import TableExampleSimple from './table';
 import Options from './flatOptions';
+import StartDialogue from './StartScreen';
 
 import { TaskControlBar } from './ControlBar';
 
@@ -37,6 +38,7 @@ const App = () => (
   <MuiThemeProvider className="App">
     <div>
       <AppBar />
+      <StartDialogue />
       <TaskControlBar
         {...props}
         onClick={i => console.log(`${i}`)}
