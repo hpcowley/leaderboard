@@ -3,6 +3,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Divider from 'material-ui/Divider';
+import Form from './Form.js'
 
 /**
  * A modal dialog can only be closed by selecting one of the actions.
@@ -10,8 +12,12 @@ import TextField from 'material-ui/TextField';
 export default class StartDialog extends React.Component {
   state = {
     open: true,
-    disabled: true,
   };
+
+  /*const { boardID, usr, pwd } = this.state;
+  const isEnabled =
+    boardID.length > 0 && usr.length > 0 && pwd.length > 0;
+  this.setState({disabled: !isEnabled});*/
 
   /*handleOpen = () => {
     this.setState({open: true});
@@ -22,18 +28,13 @@ export default class StartDialog extends React.Component {
   };
 
   handleTextReq = (a, b, c) => {
-    if(a & b & c) {
+    if(a && b && c) {
       this.setState({disabled: false});
     }
   };
 
   render() {
     const actions = [
-      /*<FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={this.handleClose}
-      />,*/
       <FlatButton
         label="Create New Board"
         secondary={true}
@@ -47,7 +48,9 @@ export default class StartDialog extends React.Component {
         onTouchTap={this.handleClose}
       />,
     ];
-
+    const boardName = <Form type="Board Name" />;
+    const username = <Form type="Username" />;
+    const pwd = <Form type="Password" />;
     return (
       <div>
         <RaisedButton label="Modal Dialog" onTouchTap={this.handleOpen} />
@@ -57,18 +60,10 @@ export default class StartDialog extends React.Component {
           modal={true}
           open={this.state.open}
         >
-          <TextField
-            floatingLabelText="Leaderboard Name"
-            errorText="This field is required"
-          /><br />
-          <TextField
-            floatingLabelText="Username"
-            errorText="This field is required"
-          />
-          <TextField
-            floatingLabelText="Password"
-            errorText="This field is required"
-          />
+          {boardName}
+          {username}
+          {pwd}
+          <Divider />
         </Dialog>
       </div>
     );

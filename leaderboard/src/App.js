@@ -38,7 +38,6 @@ const App = () => (
   <MuiThemeProvider className="App">
     <div>
       <AppBar />
-      <StartDialogue />
       <TaskControlBar
         {...props}
         onClick={i => console.log(`${i}`)}
