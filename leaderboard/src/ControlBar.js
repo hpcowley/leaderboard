@@ -5,55 +5,59 @@ import {
   ToolbarSeparator,
   ToolbarTitle,
 } from 'material-ui/Toolbar';
-import { RaisedButton, Paper } from 'material-ui';
-import PlusOneIcon from 'material-ui/svg-icons/image/exposure-plus-1';
-
+import { 
+  RaisedButton,
+  Paper 
+} from 'material-ui';
+import AddIcon from 'material-ui/svg-icons/content/add'
+import RemoveIcon from 'material-ui/svg-icons/content/remove'
+import {
+  fullWhite
+} from 'material-ui/styles/colors'
 
 export const TaskControlBar = (props) => (
   <Toolbar style={{
-      margin:10,
-      height:70,
-      display:'block',
+      margin: 10,
+      height: 70,
+      display: 'block',
       paddingTop: 6,
     }}>
     <ToolbarGroup>
-      <ToolbarTitle text={props.username} />
+      <ToolbarTitle text={props.displayname} />
       <ToolbarSeparator />
-        {   
-          props.tasks.map(taskName => (
+        {     
+          props.tasks.map(taskname => (
             <TaskCounter
-              key={taskName}
-              taskName={taskName}
-              value={props.counts[taskName]}
-              quota={props.quotas[taskName]}
-              onClick={() => props.onClick(taskName)}
+              key={taskname}
+              taskname={taskname}
+              value={props.instanceCounts[taskname]}
+              quota={props.instanceQuotas[taskname]}
+              onIncrement={props.onIncrement}
+              onDecrement={props.onDecrement}
             />
           ))
         }
       <ToolbarSeparator />
         {
-          props.tasks.map(taskName => (
+          props.tasks.map(taskname => (
             <TaskPercentageCompletionDisplay
-              className="IndividualQuotaCompletionDisplay"
-              key={taskName}
-              taskName={taskName}
-              quota={props.quotas[taskName]}
-              value={props.counts[taskName]}
+              key={taskname}
+              taskname={`Daily ${taskname}`}
+              quota={props.instanceQuotas[taskname]}
+              value={props.instanceCounts[taskname]}
             />
           ))
         }
-      <TaskPercentageCompletionDisplay
-        className="DailyQuotaCompletionDisplay"
-        taskName="Daily Quota"
-        quota={props.quotas.daily}
-        value={props.counts.daily}
-      />
-      <TaskPercentageCompletionDisplay
-        className="TotalQuotaCompletionDisplay"
-        taskName="Total Quota"
-        quota={props.quotas.total}
-        value={props.counts.total}
-      />
+        {
+          props.tasks.map(taskname => (
+            <TaskPercentageCompletionDisplay
+              key={taskname}
+              taskname={`Total ${taskname}`}
+              quota={props.totalQuotas[taskname]}
+              value={props.totalCounts[taskname]}
+            />
+          ))
+        }
       <ToolbarSeparator />
       <TaskRanking
         user={props.username}
@@ -75,15 +79,24 @@ const counterStyle = {
 export const TaskCounter = (props) => (
   <ToolbarGroup>
     <Paper style={counterStyle}>
-      {props.taskName} - {props.quota > 0 ? props.value : "N/A"}
+      {props.taskname} - {props.quota > 0 ? props.value : "N/A"}
     </Paper>
-    <RaisedButton
-      style={{margin: 0, height: 50}}
-      primary={true}
-      icon={<PlusOneIcon/>}
-      onTouchTap={props.onClick}
-      disabled={props.quota === 0}
-    />
+    <div style={{width: 50, height: 50}}>
+      <RaisedButton
+        style={{margin: 0, height: 25, width: 25}}
+        primary={true}
+        icon={<AddIcon color={fullWhite} />}
+        onTouchTap={() => props.onIncrement(props.taskname)}
+        disabled={props.quota === 0}
+      />
+      <RaisedButton
+        style={{margin: 0, height: 25, width: 25}}
+        secondary={true}
+        icon={<RemoveIcon color={fullWhite} />}
+        onTouchTap={() => props.onDecrement(props.taskname)}
+        disabled={props.quota === 0}
+      />
+    </div>
   </ToolbarGroup>
 );
 
@@ -92,14 +105,14 @@ const completionStyle = {
   paddingLeft: 20,
   paddingRight: 20,
   height: 50,
-  margin: 0,
+  margin: -25,
   textAlign: 'center',
 }
 
 
 export const TaskPercentageCompletionDisplay = (props) => (
   <Paper style={completionStyle}>
-    <p>{props.taskName} - {props.quota > 0 ? `${((props.value / props.quota)*100).toFixed(2)}%` : "N/A"}</p>
+    <p>{props.taskname} - {props.quota > 0 ? `${((props.value / props.quota)*100).toFixed(2)}%` : "N/A"}</p>
   </Paper>
 );
 
@@ -112,3 +125,5 @@ export const TaskRanking = (props) => (
     />
   </ToolbarGroup>
 )
+
+export default TaskControlBar;

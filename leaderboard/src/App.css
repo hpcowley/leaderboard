@@ -1,4 +1,4 @@
-@import "Fonts.css";
+@import "./Fonts.css";
 
 .App {
   text-align: center;
@@ -13,7 +13,7 @@
 }
 
 .Intro {
-  font-family: inherit, sans-serif;
+  font-family: inherit;
 }
 
 
