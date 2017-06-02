@@ -1,6 +1,7 @@
 import React from 'react';
 import MaterialAppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
+import StartDialog from './StartScreen.js';
 
 var button = <FlatButton /> 
 const AppBar = () => (
@@ -8,9 +9,7 @@ const AppBar = () => (
     //iconClassNameRight="muidocs-icon-navigation-expand-more"
     showMenuIconButton={false}
     iconElementRight={
-      <FlatButton 
-        label="Login"
-      />
+      <StartDialog />
     }
   />
 );

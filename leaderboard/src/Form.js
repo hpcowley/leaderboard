@@ -1,35 +1,51 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/RaisedButton';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
-export default class TextFieldExampleControlled extends React.Component {
+export default class ControlledSubmitForm extends React.Component {
 
   constructor(props) {
     super(props);
-
+    
     this.state = {
-      value: '',
+      username: '',
+      password: '',
     };
   }
 
   handleChange = (event) => {
+    const usr = event.target.value
     this.setState({
       value: event.target.value,
     });
   };
-
-  formType = (props) => {
-      return {props};
-  }
-
+  
   render() {
+    const {usr} = this.state;
+    const {pwd} = this.state;
     return (
       <div>
-        <TextField
-          id="text-field-controlled"
-          value={this.state.value}
-          hintText={this.props.type}
+      <ValidatorForm
+          ref="form"
+      >
+        <TextValidator
+          floatingLabelText="Username"
           onChange={this.handleChange}
+          name="usr"
+          value={usr}
+          validators={['required']}
+          errorMessages={['this field is required']}         
         />
+        <TextValidator
+          floatingLabelText="Password"
+          onChange={this.handleChange}
+          name="pwd"
+          value={pwd}
+          validators={'required'}
+          errorMessages={['this field is required']}         
+        />
+      </ValidatorForm>
       </div>
     );
   }
