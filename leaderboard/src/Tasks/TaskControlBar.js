@@ -1,19 +1,79 @@
 import React from 'react';
-import {
+/*import {
   Toolbar,
   ToolbarGroup,
   ToolbarSeparator,
   ToolbarTitle,
-} from 'material-ui/Toolbar';
+} from 'material-ui/Toolbar';*/
 import {
   FlatButton,
   RaisedButton,
   IconButton,
   Paper,
 } from 'material-ui';
-import TaskCounter from './Tasks/TaskCounter';
+import {
+  Table,
+  TableRow,
+  TableRowColumn,
+  TableHeader,
+  TableHeaderColumn,
+  TableBody,
+} from 'material-ui/Table';
+import TaskCounter from './TaskCounter';
 
 
+export default class TaskControlBar extends React.Component {
+  
+  render() {
+
+    const header = (
+      <TableHeader
+        displaySelectAll={false}
+        adjustForCheckbox={false}
+      >
+        <TableRow>
+          <TableHeaderColumn>Name</TableHeaderColumn>
+          {
+            this.props.tasks.map(taskname => (
+              <TableHeaderColumn>
+                {taskname}
+              </TableHeaderColumn> 
+            ))
+          }
+          <TableHeaderColumn>Rank</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+    );
+
+    return (
+      <Table>
+        {header}
+        <TableBody
+          displayRowCheckbox={false}
+        >
+          <TableRow>
+            <TableRowColumn>{this.props.displayname}</TableRowColumn>
+            {
+              this.props.tasks.map(taskname => (
+                <TableRowColumn>
+                  <TaskCounter
+                    value={this.props.instanceCounts[taskname]}
+                    quota={this.props.instanceQuotas[taskname]}
+                  />
+                </TableRowColumn>
+              ))
+            }
+            <TableHeaderColumn>{this.props.ranking}</TableHeaderColumn>
+          </TableRow>
+        </TableBody>
+      </Table>
+    )
+
+  }
+
+}
+
+/*
 export const TaskControlBar = (props) => (
   <Toolbar style={{
       margin: 10,
@@ -67,7 +127,7 @@ export const TaskControlBar = (props) => (
     </ToolbarGroup>
   </Toolbar>
 );
-
+*/
 
 
 
@@ -78,7 +138,7 @@ const completionStyle = {
   textAlign: 'center',
 }
 
-
+/*
 export const TaskPercentageCompletionDisplay = (props) => (
   <Paper style={completionStyle}>
     <p>{props.taskname} - {props.quota > 0 ? `${((props.value / props.quota)*100).toFixed(2)}%` : "N/A"}</p>
@@ -94,5 +154,4 @@ export const TaskRanking = (props) => (
     />
   </ToolbarGroup>
 )
-
-export default TaskControlBar;
+*/
