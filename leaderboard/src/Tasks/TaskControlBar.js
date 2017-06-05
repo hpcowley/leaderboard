@@ -5,12 +5,12 @@ import React from 'react';
   ToolbarSeparator,
   ToolbarTitle,
 } from 'material-ui/Toolbar';*/
-import {
-  FlatButton,
-  RaisedButton,
-  IconButton,
-  Paper,
-} from 'material-ui';
+//import {
+//  FlatButton,
+//  RaisedButton,
+//  IconButton,
+//  Paper,
+//} from 'material-ui';
 import {
   Table,
   TableRow,
@@ -23,7 +23,7 @@ import TaskCounter from './TaskCounter';
 
 
 export default class TaskControlBar extends React.Component {
-  
+
   render() {
 
     const header = (
@@ -35,9 +35,9 @@ export default class TaskControlBar extends React.Component {
           <TableHeaderColumn>Name</TableHeaderColumn>
           {
             this.props.tasks.map(taskname => (
-              <TableHeaderColumn>
+              <TableHeaderColumn key={taskname}>
                 {taskname}
-              </TableHeaderColumn> 
+              </TableHeaderColumn>
             ))
           }
           <TableHeaderColumn>Rank</TableHeaderColumn>
@@ -55,7 +55,7 @@ export default class TaskControlBar extends React.Component {
             <TableRowColumn>{this.props.displayname}</TableRowColumn>
             {
               this.props.tasks.map(taskname => (
-                <TableRowColumn>
+                <TableRowColumn key={taskname}>
                   <TaskCounter
                     value={this.props.instanceCounts[taskname]}
                     quota={this.props.instanceQuotas[taskname]}

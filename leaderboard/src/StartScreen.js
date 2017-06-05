@@ -2,19 +2,37 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import Divider from 'material-ui/Divider';
+//import TextField from 'material-ui/TextField';
+//import Divider from 'material-ui/Divider';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
-/**
- * A modal dialog can only be closed by selecting one of the actions.
- */
 export default class StartDialog extends React.Component {
+
   state = {
     open: false,
-    usr: '',
-    pwd: '',
+    username: undefined,
+    password: undefined,
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.refs.form.submit();
+    alert(event.target.value);
   };
 
   actions = [
@@ -26,33 +44,13 @@ export default class StartDialog extends React.Component {
       type="submit"
       label="Enter Board"
       primary={true}
-      disabled={true}
-      onTouchTap={this.handleClose}
+    //disabled={true}
+    //onTouchTap={this.handleClose}
     />
   ];
 
-  handleOpen = () => {
-    this.setState({open: true});
-  };
-
-  handleClose = () => {
-    this.setState({open: false});
-  };
-
-  handleUsrChange = (event) => {
-    this.setState({
-      usr: event.target.value,
-    });
-  };
-  
-  handlePwdChange = (event) => {
-    this.setState({
-      pwd: event.target.value,
-    });
-  };
-
   render() {
-    const {usr, pwd} = this.state;
+    const { username, password } = this.state;
     return (
       <div>
         <RaisedButton label="Login" onTouchTap={this.handleOpen} />
@@ -63,27 +61,32 @@ export default class StartDialog extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-        <ValidatorForm 
-          ref="form"
-        > 
-          <TextValidator
-            floatingLabelText="Username"
-            onChange={this.handleUsrChange}
-            name="usr"
-            value={usr}
-            validators={['required']}
-            errorMessages={['this field is required']}         
-          />
-          <TextValidator
-            type="password"
-            floatingLabelText="Password"
-            onChange={this.handlePwdChange}
-            name="pwd"
-            value={pwd}
-            validators={'required'}
-            errorMessages={['this field is required']}         
-        />
-      </ValidatorForm>
+          <ValidatorForm
+            ref="form"
+            onSubmit={this.handleSubmit}
+            instantValidate={true}
+          >
+            <TextValidator
+              floatingLabelText="Username"
+              onChange={this.handleUsrChange}
+              name="username"
+              value={username}
+              validators={['required']}
+              errorMessages={['This field is required']}
+            />
+            <br />
+            <TextValidator
+              type="password"
+              floatingLabelText="Password"
+              onChange={this.handlePwdChange}
+              name="password"
+              value={password}
+              validators={['required']}
+              errorMessages={['This field is required']}
+            />
+            <br />
+            <RaisedButton type="submit" label="submit" />
+          </ValidatorForm>
         </Dialog>
       </div>
     );

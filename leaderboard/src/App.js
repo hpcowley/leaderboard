@@ -31,12 +31,9 @@ const props = {
   totalQuotas: {
     Synapses: 40,
     Tracing: 20
-  },/*
+  },  
   onIncrement: i => console.log(`increment ${i}`),
   onDecrement: i => console.log(`decrement ${i}`),
-  */
-  onIncrement(i) { console.log(`increment ${i}`); },
-  onDecrement(i) { console.log(`decrement ${i}`); }
 }
 
 // This would need to become a class in a real application, of course.

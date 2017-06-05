@@ -6,12 +6,10 @@ import RemoveIcon from 'material-ui/svg-icons/content/remove';
 import Popover, { PopoverAnimationVertical } from 'material-ui/Popover';
 import { FlatButton, RaisedButton, IconButton, Paper } from 'material-ui';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-const theme = getMuiTheme();
+import { muiThemeable } from 'material-ui/styles';
 
 
-export default class TaskCounter extends React.Component {
+class TaskCounter extends React.Component {
 
   constructor(props) {
     super(props);
@@ -21,7 +19,10 @@ export default class TaskCounter extends React.Component {
       value: props.value,
     };
 
-    this.quotaExists = props.quota > 0;
+    this.primaryColor = this.props.muiTheme.palette.primary1Color;
+    this.accentColor  = this.props.muiTheme.palette.accent1Color;
+
+    this.quotaExists   = props.quota > 0;
     this.enableCounter = props.quota >= 0;
   }
 
@@ -83,17 +84,17 @@ export default class TaskCounter extends React.Component {
             <IconButton
               style={iconStyle}
               onTouchTap={this.handleIncrement}
-              touchRippleColor={theme.palette.primary1Color}
+              touchRippleColor={this.primaryColor}
             >
-              <AddIcon color={theme.palette.primary1Color} />
+              <AddIcon color={this.primaryColor} />
             </IconButton>
             <IconButton
               style={iconStyle}
               disabled={this.state.value === 0}
               onTouchTap={this.handleDecrement}
-              touchRippleColor={theme.palette.accent1Color}
+              touchRippleColor={this.accentColor}
             >
-              <RemoveIcon color={theme.palette.accent1Color} />
+              <RemoveIcon color={this.accentColor} />
             </IconButton>
           </Paper>
         </Popover>
@@ -101,3 +102,5 @@ export default class TaskCounter extends React.Component {
     );
   }
 }
+
+export default muiThemeable()(TaskCounter);
