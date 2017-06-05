@@ -5,7 +5,8 @@ import './Fonts.css';
 import AppBar from './appBar';
 import TableExampleSimple from './table';
 import Options from './flatOptions';
-import StartDialogue from './StartScreen';
+import LeaderBoard from './LeaderBoard.js';
+
 
 import { TaskControlBar } from './ControlBar';
 
@@ -48,6 +49,7 @@ const App = () => (
       <TaskControlBar
         {...props}
       />
+      <LeaderBoard {...props}/>
     </div>
   </MuiThemeProvider>
 );
